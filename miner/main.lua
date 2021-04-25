@@ -30,11 +30,6 @@ end
 
 function init()
     comms.hostID = comms.Connect()
-    if comms.hostID == -1 then
-        print("Connection failed.")
-        sleep(1)
-        os.reboot()
-    end
 
     term.clear()
     term.setCursorPos(1, 1)

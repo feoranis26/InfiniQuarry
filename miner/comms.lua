@@ -33,7 +33,9 @@ function Connect()
         end
     end
     if hostID == -1 then
-        print("Can't connect to host.\nCheck if the host is running.")
+        print("Connection failed.")
+        sleep(1)
+        os.reboot()
     end
     return hostID
 end
