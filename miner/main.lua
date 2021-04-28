@@ -17,25 +17,28 @@ os.loadAPI("quarry_position_mgr.lua")
 function mine()
     while true do
         if miner.working and not miner.helper then
-            turtle.dig() -- TODO: Remove fluids when detected by going up and down, or by pumping them.
+            turtle.dig()
             turtle.forward()
             turtle.digUp()
             turtle.digDown()
+            actions.checkForLiquids() -- UNTESTED
             quarry_position_mgr.next_block()
         else
             sleep(0.1)
         end
     end
-end
+end     
 
 function init()
+    moveFunctions.faceFront()
+    
     comms.hostID = comms.Connect()
 
     term.clear()
     term.setCursorPos(1, 1)
 
-    moveFunctions.faceFront()
-
     print("Connected to : " .. comms.hostID)
     parallel.waitForAll(heartbeat.startClient, comms.start, mine)
 end
+
+init()

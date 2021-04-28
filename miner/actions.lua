@@ -93,18 +93,54 @@ function checks()
     end
 end
 
-function chunkLoader(mine) 
-    turtle.select(3) 
-    turtle.up() 
-    if mine then 
-        turtle.select(4) 
-        turtle.equipLeft() 
-        turtle.select(3) 
-        turtle.digUp() 
-        turtle.select(4) 
-        turtle.equipLeft() 
-    else  
-        turtle.placeUp() 
-    end 
-    turtle.down() 
+function chunkLoader(mine)
+    turtle.select(3)
+    turtle.up()
+    if mine then
+        turtle.select(4)
+        turtle.equipLeft()
+        turtle.select(3)
+        turtle.digUp()
+        turtle.select(4)
+        turtle.equipLeft()
+    else
+        turtle.placeUp()
+    end
+    turtle.down()
+end
+
+function checkForLiquids()
+    local x, dat = turtle.inspect()
+    local x, datUp = turtle.inspectUp()
+    local x, datDown = turtle.inspectDown()
+
+    go = false
+
+    if dat ~= nil then
+        if dat.name == "minecraft:water" or dat.name == "minecraft:lava" or dat.name == "minecraft:flowing_water" or
+            dat.name == "minecraft:flowing_lava" then
+            go = true
+        end
+    end
+    if datUp ~= nil then
+        if datUp.name == "minecraft:water" or datUp.name == "minecraft:lava" or datUp.name == "minecraft:flowing_water" or
+            datUp.name == "minecraft:flowing_lava" then
+            go = true
+        end
+    end
+    if datDown ~= nil then
+        if datDown.name == "minecraft:water" or datDown.name == "minecraft:lava" or datDown.name ==
+            "minecraft:flowing_water" or datDown.name == "minecraft:flowing_lava" then
+            go = true
+        end
+    end
+
+    if go then
+        turtle.digUp()
+        turtle.digDown()
+        turtle.up()
+        turtle.down()
+        turtle.down()
+        turtle.up()
+    end
 end

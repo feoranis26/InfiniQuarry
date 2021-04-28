@@ -306,6 +306,7 @@ function waitForConnections()
                 end
                 if c == false then  
                     print("Connecting"..miner.ID)
+                    sleep(1)
                     table.insert(miners, miner)
                     table.insert(heartbeat.IDs, s)     
                 end              
