@@ -21,7 +21,7 @@ function mine()
             turtle.forward()
             turtle.digUp()
             turtle.digDown()
-            actions.checkForLiquids() -- UNTESTED
+            actions.checkForLiquids() -- TODO: Test this!
             quarry_position_mgr.next_block()
         else
             sleep(0.1)

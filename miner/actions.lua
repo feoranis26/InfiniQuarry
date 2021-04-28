@@ -109,7 +109,7 @@ function chunkLoader(mine)
     turtle.down()
 end
 
-function checkForLiquids()
+function checkForLiquids() --TODO: Test this!
     local x, dat = turtle.inspect()
     local x, datUp = turtle.inspectUp()
     local x, datDown = turtle.inspectDown()
