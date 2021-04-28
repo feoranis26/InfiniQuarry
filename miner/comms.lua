@@ -63,11 +63,12 @@ function processComms()
             for i = 1, table.getn(Commands.commands) - 1 do
                 local command = Commands.commands[i]
                 if command.name == m then
+                    s, m2 = rednet.receive("MINER_COMMS", 1)
                     term.setCursorPos(1, 4)
                     print(command.name)
                     rednet.send(s, "QUEUED " .. m, "MINER_COMMS")
                     command_ok = true
-                    table.insert(commandQueue, command.name)
+                    table.insert(commandQueue, {name = command.name, args = m2})
                     break
                 end
             end
